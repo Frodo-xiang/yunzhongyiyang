@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>云中颐享 - 数据驱动的智慧养老解决方案</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#4F46E5',secondary:'#10B981'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+.font-size-control button {
+transition: all 0.3s ease;
+}
+.service-card {
+transition: all 0.3s ease;
+}
+.service-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+.custom-switch {
+position: relative;
+display: inline-block;
+width: 48px;
+height: 24px;
+}
+.custom-switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+transition: .4s;
+border-radius: 24px;
+}
+.slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .slider {
+background-color: #4F46E5;
+}
+input:checked + .slider:before {
+transform: translateX(24px);
+}
+.custom-radio {
+display: inline-block;
+position: relative;
+padding-left: 28px;
+cursor: pointer;
+user-select: none;
+}
+.custom-radio input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+}
+.checkmark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+background-color: #fff;
+border: 2px solid #d1d5db;
+border-radius: 50%;
+}
+.custom-radio:hover input ~ .checkmark {
+border-color: #4F46E5;
+}
+.custom-radio input:checked ~ .checkmark {
+background-color: #fff;
+border-color: #4F46E5;
+}
+.checkmark:after {
+content: "";
+position: absolute;
+display: none;
+}
+.custom-radio input:checked ~ .checkmark:after {
+display: block;
+}
+.custom-radio .checkmark:after {
+top: 3px;
+left: 3px;
+width: 10px;
+height: 10px;
+border-radius: 50%;
+background: #4F46E5;
+}
+.custom-checkbox {
+display: inline-block;
+position: relative;
+padding-left: 28px;
+cursor: pointer;
+user-select: none;
+}
+.custom-checkbox input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+}
+.checkbox-mark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+background-color: #fff;
+border: 2px solid #d1d5db;
+border-radius: 4px;
+}
+.custom-checkbox:hover input ~ .checkbox-mark {
+border-color: #4F46E5;
+}
+.custom-checkbox input:checked ~ .checkbox-mark {
+background-color: #4F46E5;
+border-color: #4F46E5;
+}
+.checkbox-mark:after {
+content: "";
+position: absolute;
+display: none;
+}
+.custom-checkbox input:checked ~ .checkbox-mark:after {
+display: block;
+}
+.custom-checkbox .checkbox-mark:after {
+left: 6px;
+top: 2px;
+width: 5px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.range-slider {
+width: 100%;
+height: 6px;
+-webkit-appearance: none;
+background: #e5e7eb;
+outline: none;
+border-radius: 15px;
+}
+.range-slider::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 20px;
+height: 20px;
+border-radius: 50%;
+background: #4F46E5;
+cursor: pointer;
+border: 4px solid white;
+box-shadow: 0 0 0 1px #4F46E5;
+}
+.range-slider::-moz-range-thumb {
+width: 20px;
+height: 20px;
+border-radius: 50%;
+background: #4F46E5;
+cursor: pointer;
+border: 4px solid white;
+box-shadow: 0 0 0 1px #4F46E5;
+}
+</style>
+</head>
+<body class="bg-gray-50">
+<!-- 顶部导航栏 -->
+<header class="bg-white shadow-sm sticky top-0 z-50">
+<div class="container mx-auto px-4 py-3 flex items-center justify-between">
+<div class="flex items-center">
+<a href="#" class="mr-8">
+<img src="https://static.readdy.ai/image/ec12b16225f432b51dcec6ecf5c34a22/413869510e1bbce9d479236bcf5c668a.jpeg" alt="云中颐享" class="h-8">
+</a>
+<nav class="hidden md:flex space-x-6">
+<a href="#home" class="text-gray-800 hover:text-primary font-medium">首页</a>
+<a href="#services" class="text-gray-800 hover:text-primary font-medium">服务模块</a>
+<a href="#data" class="text-gray-800 hover:text-primary font-medium">数据看板</a>
+<a href="#about" class="text-gray-800 hover:text-primary font-medium">关于我们</a>
+</nav>
+</div>
+<div class="flex items-center space-x-4">
+<div class="hidden md:flex items-center bg-gray-100 rounded-full px-3 py-2">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-search-line text-gray-500"></i>
+</div>
+<input type="text" placeholder="搜索服务..." class="bg-transparent border-none outline-none text-sm w-40">
+</div>
+<div class="flex items-center text-primary">
+<div class="w-5 h-5 flex items-center justify-center mr-1">
+<i class="ri-customer-service-2-line"></i>
+</div>
+<span class="text-sm font-medium">400-888-9999</span>
+</div>
+<div class="flex space-x-2">
+<button class="text-primary border border-primary px-3 py-1.5 rounded-button text-sm font-medium hover:bg-primary hover:text-white transition whitespace-nowrap">登录</button>
+<button class="bg-primary text-white px-3 py-1.5 rounded-button text-sm font-medium hover:bg-indigo-600 transition whitespace-nowrap">注册</button>
+</div>
+<div class="font-size-control hidden md:flex items-center space-x-1">
+<button class="w-6 h-6 flex items-center justify-center rounded-full bg-gray-200 text-xs">A-</button>
+<button class="w-7 h-7 flex items-center justify-center rounded-full bg-primary text-white">A</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 text-lg">A+</button>
+</div>
+<button class="md:hidden w-10 h-10 flex items-center justify-center">
+<i class="ri-menu-line text-xl"></i>
+</button>
+</div>
+</div>
+</header>
+<!-- 核心价值展示区 -->
+<section id="home" class="relative overflow-hidden bg-gradient-to-r from-white via-white/90 to-white/20 min-h-[600px]">
+<div class="container mx-auto px-4 py-20 relative">
+<div class="grid md:grid-cols-2 gap-8 items-center">
+<div>
+<div class="inline-flex items-center bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-medium mb-4">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-shield-check-line"></i>
+</div>
+依托江苏省"苏适养老"政策体系
+</div>
+<h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">数据驱动的<br>智慧养老解决方案</h1>
+<p class="text-lg text-gray-700 mb-8">基于大量老年群体需求调研，打造"基础服务+延伸服务"双轮驱动的智慧养老平台，为老年人提供安全、便捷、有尊严的数字化养老体验。</p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-white px-6 py-3 rounded-button text-base font-medium hover:bg-indigo-600 transition flex items-center whitespace-nowrap">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-questionnaire-line"></i>
+</div>
+需求自测
+</button>
+<button class="bg-white text-gray-800 border border-gray-300 px-6 py-3 rounded-button text-base font-medium hover:bg-gray-50 transition flex items-center whitespace-nowrap">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-customer-service-2-line"></i>
+</div>
+联系客服
+</button>
+</div>
+</div>
+<div class="hidden md:block relative">
+<img src="https://static.readdy.ai/image/ec12b16225f432b51dcec6ecf5c34a22/9d6cd8401fd5a7689d176e7974909562.jpeg" alt="智慧养老解决方案" class="w-full h-[500px] object-cover rounded-lg shadow-xl">
+</div>
+</div>
+</div>
+</section>
+<!-- 核心优势 -->
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-gray-900 mb-3">三大核心优势</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">融合区块链技术、适老化设计及政策协同资源，精准匹配居家生活、安全健康、精神慰藉三大场景服务</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-white rounded-lg shadow-lg p-6 service-card">
+<div class="w-14 h-14 flex items-center justify-center bg-blue-100 text-primary rounded-lg mb-4">
+<i class="ri-government-line text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold text-gray-900 mb-2">政策支持</h3>
+<p class="text-gray-600 mb-4">依托江苏省"苏适养老"政策体系，打通医疗、民政、文旅数据接口，实现健康档案跨部门同步。</p>
+<div class="flex items-center text-primary">
+<span class="text-sm font-medium">了解政策详情</span>
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-lg p-6 service-card">
+<div class="w-14 h-14 flex items-center justify-center bg-green-100 text-secondary rounded-lg mb-4">
+<i class="ri-user-heart-line text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold text-gray-900 mb-2">需求导向</h3>
+<p class="text-gray-600 mb-4">基于大量老年群体需求调研与多元线性回归模型分析，以需求分层理论为核心，精准匹配服务。</p>
+<div class="flex items-center text-primary">
+<span class="text-sm font-medium">查看研究报告</span>
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-lg p-6 service-card">
+<div class="w-14 h-14 flex items-center justify-center bg-purple-100 text-primary rounded-lg mb-4">
+<i class="ri-service-line text-2xl"></i>
+</div>
+<h3 class="text-xl font-bold text-gray-900 mb-2">服务体系</h3>
+<p class="text-gray-600 mb-4">"基础服务+延伸服务"双轮驱动模式，覆盖 98% 社区，30 分钟极速响应，专业认证人员提供服务。</p>
+<div class="flex items-center text-primary">
+<span class="text-sm font-medium">服务体系详情</span>
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 服务模块展示 -->
+<section id="services" class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-gray-900 mb-3">三大服务模块</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">精准匹配居家生活、安全健康、精神慰藉三大场景服务，为老年人提供全方位的养老解决方案</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<!-- 居家生活服务 -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+<div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=A%20warm%20and%20cozy%20Chinese%20elderly-friendly%20home%20environment%20with%20Asian%20design%20elements.%20Show%20smart%20home%20features%20like%20automated%20lighting%2C%20safety%20handrails%2C%20and%20traditional%20Chinese%20meal%20delivery%20service.%20The%20space%20has%20Chinese%20artwork%20on%20walls%2C%20comfortable%20modern%20Asian%20furniture%2C%20and%20shows%20technology%20integrated%20seamlessly.%20Features%20Chinese%20elderly%20couple%20interacting%20with%20smart%20home%20devices.%20Clean%20modern%20design%20with%20warm%20traditional%20Chinese%20colors&width=400&height=200&seq=2&orientation=landscape')"></div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-4">居家生活服务</h3>
+<div class="mb-6">
+<h4 class="text-lg font-semibold text-gray-800 mb-3">基础生活支持</h4>
+<ul class="space-y-3">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-restaurant-line"></i>
+</div>
+<span class="text-gray-600">送餐上门（覆盖 98% 社区）</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-tools-line"></i>
+</div>
+<span class="text-gray-600">家电维修（30 分钟极速响应）</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-home-gear-line"></i>
+</div>
+<span class="text-gray-600">居家保洁（专业认证人员）</span>
+</li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold text-gray-800 mb-3">增值服务</h4>
+<ul class="space-y-3">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-home-heart-line"></i>
+</div>
+<span class="text-gray-600">适老化改造（智能家居安装）</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-user-follow-line"></i>
+</div>
+<span class="text-gray-600">代际融合服务（青银课堂）</span>
+</li>
+</ul>
+</div>
+<button class="mt-6 w-full bg-primary text-white py-2.5 rounded-button font-medium hover:bg-indigo-600 transition whitespace-nowrap">查看详情</button>
+</div>
+</div>
+<!-- 安全健康服务 -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+<div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=A%20modern%20healthcare%20monitoring%20system%20in%20a%20Chinese%20setting%2C%20showing%20elderly%20Chinese%20patients%20using%20smart%20devices%20for%20vital%20signs%20measurement.%20A%20tablet%20displays%20health%20data%20charts%20in%20Chinese%2C%20and%20a%20telehealth%20consultation%20with%20a%20Chinese%20doctor%20is%20in%20progress.%20The%20environment%20is%20bright%20and%20clean%20with%20traditional%20Chinese%20medical%20elements%20integrated%20with%20modern%20technology.%20Show%20IoT%20devices%20for%20blood%20pressure%20and%20glucose%20monitoring%20with%20Chinese%20interface&width=400&height=200&seq=3&orientation=landscape')"></div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-4">安全健康服务</h3>
+<div class="mb-6">
+<h4 class="text-lg font-semibold text-gray-800 mb-3">健康管理闭环</h4>
+<ul class="space-y-3">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-heart-pulse-line"></i>
+</div>
+<span class="text-gray-600">智能监测（血压、血糖数据实时监测）</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-hospital-line"></i>
+</div>
+<span class="text-gray-600">医疗全流程（对接三甲医院）</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-medicine-bottle-line"></i>
+</div>
+<span class="text-gray-600">药品代购（医保直付）</span>
+</li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold text-gray-800 mb-3">康养支持</h4>
+<ul class="space-y-3">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-run-line"></i>
+</div>
+<span class="text-gray-600">康复训练（AI 个性化训练计划）</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-restaurant-2-line"></i>
+</div>
+<span class="text-gray-600">营养管理（慢性病定制食谱）</span>
+</li>
+</ul>
+</div>
+<button class="mt-6 w-full bg-primary text-white py-2.5 rounded-button font-medium hover:bg-indigo-600 transition whitespace-nowrap">查看详情</button>
+</div>
+</div>
+<!-- 精神慰藉服务 -->
+<div class="bg-white rounded-lg shadow-lg overflow-hidden">
+<div class="h-48 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=A%20vibrant%20Chinese%20community%20center%20showing%20elderly%20Chinese%20people%20engaged%20in%20traditional%20activities%20like%20calligraphy%2C%20playing%20Chinese%20chess%20%28xiangqi%29%2C%20and%20tai%20chi.%20The%20space%20features%20Chinese%20architectural%20elements%20and%20decorations%2C%20bright%20and%20welcoming%20with%20comfortable%20modern%20seating%20areas.%20Some%20Chinese%20seniors%20are%20using%20tablets%20for%20video%20calls%20with%20family%20members.%20The%20atmosphere%20is%20warm%20and%20supportive%20with%20Chinese%20cultural%20elements&width=400&height=200&seq=4&orientation=landscape')"></div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-4">精神慰藉服务</h3>
+<div class="mb-6">
+<h4 class="text-lg font-semibold text-gray-800 mb-3">线上线下融合社交</h4>
+<ul class="space-y-3">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-film-line"></i>
+</div>
+<span class="text-gray-600">文娱活动（戏曲直播、书画社群）</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-group-line"></i>
+</div>
+<span class="text-gray-600">线下社区活动（棋牌赛、节日联欢会）</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-mental-health-line"></i>
+</div>
+<span class="text-gray-600">情感支持（心理咨询、法律调解）</span>
+</li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold text-gray-800 mb-3">公益价值重构</h4>
+<ul class="space-y-3">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-hand-heart-line"></i>
+</div>
+<span class="text-gray-600">"银龄义工"计划（积分兑换服务）</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-community-line"></i>
+</div>
+<span class="text-gray-600">社区互助（低龄老人帮扶高龄老人）</span>
+</li>
+</ul>
+</div>
+<button class="mt-6 w-full bg-primary text-white py-2.5 rounded-button font-medium hover:bg-indigo-600 transition whitespace-nowrap">查看详情</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 核心技术与政策协同 -->
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-gray-900 mb-3">核心技术与政策协同</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">融合前沿技术与政策支持，打造智能、安全、便捷的养老服务体系</p>
+</div>
+<div class="grid md:grid-cols-2 gap-12">
+<div class="bg-gray-50 rounded-lg p-8">
+<div class="w-16 h-16 flex items-center justify-center bg-blue-100 text-primary rounded-full mb-6">
+<i class="ri-ai-generate text-3xl"></i>
+</div>
+<h3 class="text-2xl font-bold text-gray-900 mb-4">技术创新</h3>
+<div class="space-y-6">
+<div>
+<h4 class="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+<div class="w-5 h-5 flex items-center justify-center text-primary mr-2">
+<i class="ri-robot-line"></i>
+</div>
+AI 智能匹配
+</h4>
+<p class="text-gray-600 ml-7">基于用户行为数据，动态推荐服务套餐（如糖尿病群体优先推送膳食管理）</p>
+</div>
+<div>
+<h4 class="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+<div class="w-5 h-5 flex items-center justify-center text-primary mr-2">
+<i class="ri-voice-recognition-line"></i>
+</div>
+语音交互系统
+</h4>
+<p class="text-gray-600 ml-7">支持普通话及吴语方言，简化操作流程（如"小云，预约明天保洁"）</p>
+</div>
+<div>
+<h4 class="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+<div class="w-5 h-5 flex items-center justify-center text-primary mr-2">
+<i class="ri-lock-password-line"></i>
+</div>
+区块链追溯
+</h4>
+<p class="text-gray-600 ml-7">护理人员服务轨迹上链，用户可扫码查看服务凭证，保障服务质量</p>
+</div>
+</div>
+</div>
+<div class="bg-gray-50 rounded-lg p-8">
+<div class="w-16 h-16 flex items-center justify-center bg-green-100 text-secondary rounded-full mb-6">
+<i class="ri-government-line text-3xl"></i>
+</div>
+<h3 class="text-2xl font-bold text-gray-900 mb-4">政策赋能</h3>
+<div class="space-y-6">
+<div>
+<h4 class="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mr-2">
+<i class="ri-database-2-line"></i>
+</div>
+数据共享联盟
+</h4>
+<p class="text-gray-600 ml-7">打通医疗、民政、文旅数据接口，实现健康档案跨部门同步</p>
+</div>
+<div>
+<h4 class="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mr-2">
+<i class="ri-money-cny-circle-line"></i>
+</div>
+税收优惠
+</h4>
+<p class="text-gray-600 ml-7">中小企业参与平台生态可享受研发费用加计扣除</p>
+</div>
+<div>
+<h4 class="text-lg font-semibold text-gray-800 mb-2 flex items-center">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mr-2">
+<i class="ri-funds-box-line"></i>
+</div>
+专项补贴
+</h4>
+<p class="text-gray-600 ml-7">江苏省民政厅智慧养老专项补贴，为符合条件的老年人提供服务费用减免</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 数据看板 -->
+<section id="data" class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-gray-900 mb-3">实时数据看板</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">透明化展示平台运营数据，实时反映服务质量与用户体验</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+<div class="bg-white rounded-lg shadow-md p-6 text-center">
+<div class="text-3xl font-bold text-primary mb-2">98%</div>
+<div class="text-gray-600 text-sm">社区覆盖率</div>
+</div>
+<div class="bg-white rounded-lg shadow-md p-6 text-center">
+<div class="text-3xl font-bold text-primary mb-2">30 分钟</div>
+<div class="text-gray-600 text-sm">平均响应时间</div>
+</div>
+<div class="bg-white rounded-lg shadow-md p-6 text-center">
+<div class="text-3xl font-bold text-primary mb-2">96.7%</div>
+<div class="text-gray-600 text-sm">用户满意度</div>
+</div>
+<div class="bg-white rounded-lg shadow-md p-6 text-center">
+<div class="text-3xl font-bold text-primary mb-2">25,876</div>
+<div class="text-gray-600 text-sm">注册用户数</div>
+</div>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="bg-white rounded-lg shadow-lg p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-4">服务类型分布</h3>
+<div id="serviceChart" class="w-full h-80"></div>
+</div>
+<div class="bg-white rounded-lg shadow-lg p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-4">用户满意度趋势</h3>
+<div id="satisfactionChart" class="w-full h-80"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- 用户案例 -->
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-gray-900 mb-3">用户案例与研究成果</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">真实案例展示平台价值，研究成果支撑服务质量</p>
+</div>
+<div class="grid md:grid-cols-2 gap-12">
+<div>
+<h3 class="text-2xl font-bold text-gray-900 mb-6">典型用户案例</h3>
+<div class="bg-gray-50 rounded-lg p-6 mb-6">
+<div class="flex items-start">
+<div class="w-12 h-12 rounded-full bg-cover bg-center mr-4" style="background-image: url('https://readdy.ai/api/search-image?query=A%20warm%20and%20friendly%20portrait%20of%20a%20senior%20Chinese%20woman%20in%20her%2070s%20with%20a%20gentle%20smile%2C%20wearing%20a%20traditional%20Chinese-style%20casual%20jacket%20in%20pastel%20colors.%20Her%20hair%20is%20neatly%20styled%20in%20a%20modern%20Asian%20elderly%20fashion.%20The%20photo%20should%20be%20a%20professional%20headshot%20style%20with%20soft%20lighting%20against%20a%20neutral%20background&width=100&height=100&seq=5&orientation=squarish')"></div>
+<div>
+<h4 class="text-lg font-semibold text-gray-800">南京王阿姨</h4>
+<p class="text-gray-500 text-sm">76 岁，独居老人</p>
+</div>
+</div>
+<p class="text-gray-600 mt-4">
+"去年我在家不小心摔倒了，多亏了'云中养老'的紧急呼叫功能，服务人员只用了 8 分钟就赶到我家。现在我每天都戴着他们的智能手表，血压异常会自动通知我女儿，让我和家人都安心不少。"
+</p>
+</div>
+<div class="bg-gray-50 rounded-lg p-6">
+<div class="flex items-start">
+<div class="w-12 h-12 rounded-full bg-cover bg-center mr-4" style="background-image: url('https://readdy.ai/api/search-image?query=A%20friendly%20portrait%20of%20a%20senior%20Chinese%20man%20in%20his%2060s%20with%20glasses%2C%20short%20gray%20hair%20and%20a%20warm%20smile.%20He%20is%20wearing%20a%20traditional%20Chinese-style%20casual%20collar%20shirt%20in%20neutral%20colors.%20The%20photo%20should%20be%20a%20professional%20headshot%20style%20with%20soft%20lighting%20against%20a%20neutral%20background%2C%20showing%20typical%20Chinese%20elderly%20facial%20features&width=100&height=100&seq=6&orientation=squarish')"></div>
+<div>
+<h4 class="text-lg font-semibold text-gray-800">徐州张叔叔</h4>
+<p class="text-gray-500 text-sm">68 岁，退休教师</p>
+</div>
+</div>
+<p class="text-gray-600 mt-4">
+"我是糖尿病患者，平台根据我的健康数据定制了营养餐和运动计划。最让我惊喜的是'银龄义工'计划，我每周去社区教孩子们下象棋，积分可以兑换免费体检，感觉自己退休后的生活更有价值了。"
+</p>
+</div>
+</div>
+<div>
+<h3 class="text-2xl font-bold text-gray-900 mb-6">研究成果展示</h3>
+<div class="bg-gray-50 rounded-lg p-6 mb-6">
+<h4 class="text-lg font-semibold text-gray-800 mb-3">需求匹配率提升</h4>
+<div class="flex items-center mb-4">
+<div class="w-full bg-gray-200 rounded-full h-2.5">
+<div class="bg-primary h-2.5 rounded-full" style="width: 37%"></div>
+</div>
+<span class="ml-3 text-gray-700 font-medium">37%</span>
+</div>
+<p class="text-gray-600">优化后平台接受度提高 37%，其中高龄用户医疗模块使用率增长 52%</p>
+</div>
+<div class="bg-gray-50 rounded-lg p-6">
+<h4 class="text-lg font-semibold text-gray-800 mb-3">学术背书</h4>
+<ul class="space-y-3">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-file-list-3-line"></i>
+</div>
+<span class="text-gray-600">平台设计基于《老年需求分层模型》研究</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-book-open-line"></i>
+</div>
+<span class="text-gray-600">参考《智慧养老技术伦理白皮书》标准</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+<i class="ri-team-line"></i>
+</div>
+<span class="text-gray-600">核心团队由行政管理、物流管理专业成员组成</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 需求自测工具 -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+<div class="md:flex">
+<div class="md:w-1/2 p-8">
+<h2 class="text-2xl font-bold text-gray-900 mb-4">3 分钟需求自测</h2>
+<p class="text-gray-600 mb-6">填写基本信息，我们将为您生成个性化服务方案</p>
+<form class="space-y-4">
+<div>
+<label class="block text-gray-700 text-sm font-medium mb-2">年龄段</label>
+<div class="flex flex-wrap gap-3">
+<label class="custom-radio">
+<input type="radio" name="age" checked>
+<span class="checkmark"></span>
+60-69 岁
+</label>
+<label class="custom-radio">
+<input type="radio" name="age">
+<span class="checkmark"></span>
+70-79 岁
+</label>
+<label class="custom-radio">
+<input type="radio" name="age">
+<span class="checkmark"></span>
+80 岁以上
+</label>
+</div>
+</div>
+<div>
+<label class="block text-gray-700 text-sm font-medium mb-2">居住状况</label>
+<div class="flex flex-wrap gap-3">
+<label class="custom-radio">
+<input type="radio" name="living" checked>
+<span class="checkmark"></span>
+独居
+</label>
+<label class="custom-radio">
+<input type="radio" name="living">
+<span class="checkmark"></span>
+与配偶同住
+</label>
+<label class="custom-radio">
+<input type="radio" name="living">
+<span class="checkmark"></span>
+与子女同住
+</label>
+</div>
+</div>
+<div>
+<label class="block text-gray-700 text-sm font-medium mb-2">健康状况</label>
+<div class="flex flex-wrap gap-3">
+<label class="custom-checkbox">
+<input type="checkbox" name="health">
+<span class="checkbox-mark"></span>
+高血压
+</label>
+<label class="custom-checkbox">
+<input type="checkbox" name="health">
+<span class="checkbox-mark"></span>
+糖尿病
+</label>
+<label class="custom-checkbox">
+<input type="checkbox" name="health">
+<span class="checkbox-mark"></span>
+心脏病
+</label>
+<label class="custom-checkbox">
+<input type="checkbox" name="health">
+<span class="checkbox-mark"></span>
+关节炎
+</label>
+</div>
+</div>
+<div>
+<label class="block text-gray-700 text-sm font-medium mb-2">最关注的服务（可多选）</label>
+<div class="flex flex-wrap gap-3">
+<label class="custom-checkbox">
+<input type="checkbox" name="service" checked>
+<span class="checkbox-mark"></span>
+生活照料
+</label>
+<label class="custom-checkbox">
+<input type="checkbox" name="service">
+<span class="checkbox-mark"></span>
+健康管理
+</label>
+<label class="custom-checkbox">
+<input type="checkbox" name="service">
+<span class="checkbox-mark"></span>
+社交活动
+</label>
+</div>
+</div>
+<div>
+<label class="block text-gray-700 text-sm font-medium mb-2">智能设备使用熟练度</label>
+<div class="flex items-center">
+<span class="text-sm text-gray-500 mr-3">不熟悉</span>
+<input type="range" min="1" max="5" value="3" class="range-slider flex-1">
+<span class="text-sm text-gray-500 ml-3">非常熟悉</span>
+</div>
+</div>
+<button type="button" class="w-full bg-primary text-white py-3 rounded-button font-medium hover:bg-indigo-600 transition whitespace-nowrap">
+生成个性化方案
+</button>
+</form>
+</div>
+<div class="md:w-1/2 bg-cover bg-center" style="background-image: url('https://readdy.ai/api/search-image?query=A%20Chinese%20senior%20citizen%20interacting%20with%20a%20digital%20tablet%20showing%20a%20health%20assessment%20questionnaire%20in%20Chinese.%20The%20interface%20is%20elderly-friendly%20with%20large%20Chinese%20text%20and%20simple%20design.%20The%20scene%20shows%20the%20person%20sitting%20comfortably%20in%20a%20modern%20Chinese%20living%20room%20with%20traditional%20elements%20like%20a%20tea%20set%20and%20bamboo%20plants.%20The%20tablet%20displays%20health%20metrics%20and%20personalized%20care%20recommendations%20in%20Chinese&width=500&height=600&seq=7&orientation=portrait')"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- 家庭协作功能 -->
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div>
+<div class="inline-flex items-center bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-medium mb-4">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-family-line"></i>
+</div>
+家庭协作功能
+</div>
+<h2 class="text-3xl font-bold text-gray-900 mb-6">让家人共同参与养老</h2>
+<p class="text-gray-600 mb-8">
+即使身处异地，子女也能远程关注父母的健康状况和生活需求，实现全家人的无缝协作。
+</p>
+<div class="space-y-6">
+<div class="flex">
+<div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-primary rounded-lg mr-4 shrink-0">
+<i class="ri-link-m text-xl"></i>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-gray-800 mb-1">亲友绑定</h3>
+<p class="text-gray-600">子女可远程代父母预约服务，实时查看服务记录与健康数据</p>
+</div>
+</div>
+<div class="flex">
+<div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-primary rounded-lg mr-4 shrink-0">
+<i class="ri-notification-3-line text-xl"></i>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-gray-800 mb-1">异常提醒</h3>
+<p class="text-gray-600">健康数据异常、紧急呼叫等情况将第一时间通知家人</p>
+</div>
+</div>
+<div class="flex">
+<div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-primary rounded-lg mr-4 shrink-0">
+<i class="ri-calendar-check-line text-xl"></i>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-gray-800 mb-1">服务记录</h3>
+<p class="text-gray-600">所有服务记录上链存储，家人可随时查看服务质量和反馈</p>
+</div>
+</div>
+</div>
+<button class="mt-8 bg-primary text-white px-6 py-3 rounded-button text-base font-medium hover:bg-indigo-600 transition flex items-center whitespace-nowrap">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-download-line"></i>
+</div>
+下载家人关怀版 App
+</button>
+</div>
+<div class="hidden md:block">
+<img src="https://readdy.ai/api/search-image?query=A%20split-screen%20mobile%20app%20interface%20showing%20elderly%20care%20monitoring.%20On%20one%20side%2C%20an%20elderly%20person%20at%20home%20with%20health%20metrics%20displayed.%20On%20the%20other%20side%2C%20a%20family%20member%20remotely%20monitoring%20these%20metrics%20on%20their%20phone.%20The%20interface%20is%20clean%20and%20modern%2C%20showing%20health%20data%2C%20medication%20reminders%2C%20and%20emergency%20alerts.%20Both%20screens%20connected%20by%20visual%20elements%20showing%20real-time%20data%20sharing&width=600&height=500&seq=8&orientation=landscape" alt="家庭协作功能" class="w-full rounded-xl shadow-lg">
+</div>
+</div>
+</div>
+</section>
+<!-- 政策支持 -->
+<section class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-gray-900 mb-3">政府政策支持</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">依托江苏省"苏适养老"政策体系，获得多项政策支持与资源赋能</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-white rounded-lg shadow-md p-6">
+<div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-primary rounded-lg mb-4">
+<i class="ri-money-cny-box-line text-xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-gray-800 mb-2">智慧养老专项补贴</h3>
+<p class="text-gray-600 mb-4">符合条件的老年人每年可享受最高 2000 元的智能设备购买补贴</p>
+<a href="#" class="text-primary font-medium flex items-center">
+查看申请指南
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+<div class="bg-white rounded-lg shadow-md p-6">
+<div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-primary rounded-lg mb-4">
+<i class="ri-government-line text-xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-gray-800 mb-2">养老服务资质认证</h3>
+<p class="text-gray-600 mb-4">平台已获江苏省民政厅养老服务 AAA 级资质认证，服务标准符合国家规范</p>
+<a href="#" class="text-primary font-medium flex items-center">
+查看资质证书
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+<div class="bg-white rounded-lg shadow-md p-6">
+<div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-primary rounded-lg mb-4">
+<i class="ri-database-2-line text-xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-gray-800 mb-2">数据共享联盟</h3>
+<p class="text-gray-600 mb-4">已与江苏省内 15 家三甲医院、42 家社区卫生服务中心建立数据共享机制</p>
+<a href="#" class="text-primary font-medium flex items-center">
+查看合作机构
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- 服务入口 -->
+<section class="py-16 bg-white">
+<div class="container mx-auto px-4">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-gray-900 mb-3">多端覆盖，随时服务</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">无论您使用什么设备，我们都能提供便捷的服务入口</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-gray-50 rounded-lg p-8 text-center">
+<div class="w-20 h-20 flex items-center justify-center bg-blue-100 text-primary rounded-full mx-auto mb-6">
+<i class="ri-smartphone-line text-3xl"></i>
+</div>
+<h3 class="text-xl font-semibold text-gray-800 mb-3">手机 App</h3>
+<p class="text-gray-600 mb-6">适老化设计，大字体、语音导航，支持方言识别</p>
+<div class="flex justify-center space-x-4">
+<button class="flex items-center bg-black text-white px-4 py-2 rounded-button text-sm whitespace-nowrap">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-apple-fill"></i>
+</div>
+App Store
+</button>
+<button class="flex items-center bg-primary text-white px-4 py-2 rounded-button text-sm whitespace-nowrap">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-android-fill"></i>
+</div>
+安卓下载
+</button>
+</div>
+</div>
+<div class="bg-gray-50 rounded-lg p-8 text-center">
+<div class="w-20 h-20 flex items-center justify-center bg-green-100 text-secondary rounded-full mx-auto mb-6">
+<i class="ri-wechat-line text-3xl"></i>
+</div>
+<h3 class="text-xl font-semibold text-gray-800 mb-3">微信小程序</h3>
+<p class="text-gray-600 mb-6">无需下载安装，扫码即用，与家人共享服务记录</p>
+<div class="bg-white p-4 rounded-lg inline-block">
+<div class="w-32 h-32 bg-gray-200 rounded-lg mx-auto flex items-center justify-center">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-qr-code-line text-3xl text-gray-500"></i>
+</div>
+</div>
+<p class="text-sm text-gray-500 mt-2">扫码进入小程序</p>
+</div>
+</div>
+<div class="bg-gray-50 rounded-lg p-8 text-center">
+<div class="w-20 h-20 flex items-center justify-center bg-purple-100 text-primary rounded-full mx-auto mb-6">
+<i class="ri-computer-line text-3xl"></i>
+</div>
+<h3 class="text-xl font-semibold text-gray-800 mb-3">社区智能终端</h3>
+<p class="text-gray-600 mb-6">已在 126 个社区安装智能终端机，支持刷卡、人脸识别</p>
+<button class="bg-primary text-white px-6 py-3 rounded-button text-base font-medium hover:bg-indigo-600 transition whitespace-nowrap">
+查看终端分布
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 联系我们 -->
+<section id="about" class="py-16 bg-gray-50">
+<div class="container mx-auto px-4">
+<div class="grid md:grid-cols-2 gap-12">
+<div>
+<h2 class="text-3xl font-bold text-gray-900 mb-6">联系我们</h2>
+<p class="text-gray-600 mb-8">
+如果您有任何问题或建议，欢迎随时联系我们。我们的客服团队 7×24 小时为您服务，平均响应时间不超过 10 秒。
+</p>
+<div class="space-y-6">
+<div class="flex">
+<div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-primary rounded-lg mr-4 shrink-0">
+<i class="ri-customer-service-2-line text-xl"></i>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-gray-800 mb-1">客服热线</h3>
+<p class="text-gray-600">400-888-9999（7×24 小时）</p>
+</div>
+</div>
+<div class="flex">
+<div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-primary rounded-lg mr-4 shrink-0">
+<i class="ri-mail-line text-xl"></i>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-gray-800 mb-1">电子邮箱</h3>
+<p class="text-gray-600">service@yunzhongyixiang.com</p>
+</div>
+</div>
+<div class="flex">
+<div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-primary rounded-lg mr-4 shrink-0">
+<i class="ri-map-pin-line text-xl"></i>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-gray-800 mb-1">总部地址</h3>
+<p class="text-gray-600">江苏省南京市鼓楼区中山北路 289 号智慧养老产业园 A 座</p>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<h3 class="text-lg font-semibold text-gray-800 mb-4">关注我们</h3>
+<div class="flex space-x-4">
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-200 rounded-full hover:bg-primary hover:text-white transition">
+<i class="ri-wechat-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-200 rounded-full hover:bg-primary hover:text-white transition">
+<i class="ri-weibo-fill"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-200 rounded-full hover:bg-primary hover:text-white transition">
+<i class="ri-douyin-fill"></i>
+</a>
+</div>
+</div>
+</div>
+<div>
+<div class="bg-white rounded-lg shadow-lg p-6">
+<h3 class="text-xl font-bold text-gray-900 mb-6">留言咨询</h3>
+<form class="space-y-4">
+<div>
+<label class="block text-gray-700 text-sm font-medium mb-2">您的姓名</label>
+<input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的姓名">
+</div>
+<div>
+<label class="block text-gray-700 text-sm font-medium mb-2">联系电话</label>
+<input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的联系电话">
+</div>
+<div>
+<label class="block text-gray-700 text-sm font-medium mb-2">咨询类型</label>
+<div class="relative">
+<select class="w-full px-4 py-2 border border-gray-300 rounded appearance-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent pr-8">
+<option>服务咨询</option>
+<option>政策咨询</option>
+<option>合作洽谈</option>
+<option>投诉建议</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+<i class="ri-arrow-down-s-line text-gray-400"></i>
+</div>
+</div>
+</div>
+<div>
+<label class="block text-gray-700 text-sm font-medium mb-2">留言内容</label>
+<textarea class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent h-32" placeholder="请输入您的咨询内容"></textarea>
+</div>
+<div class="flex items-center">
+<label class="custom-checkbox">
+<input type="checkbox" checked>
+<span class="checkbox-mark"></span>
+我同意《隐私政策》和《服务条款》
+</label>
+</div>
+<button type="button" class="w-full bg-primary text-white py-3 rounded-button font-medium hover:bg-indigo-600 transition whitespace-nowrap">
+提交咨询
+</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 底部 -->
+<footer class="bg-gray-900 text-white py-12">
+<div class="container mx-auto px-4">
+<div class="grid md:grid-cols-4 gap-8 mb-8">
+<div>
+<h3 class="text-xl font-['Pacifico'] mb-4">云中颐享</h3>
+<p class="text-gray-400 mb-4">数据驱动的智慧养老解决方案，让科技融入温度，为幸福护航！</p>
+<div class="flex space-x-4">
+<a href="#" class="text-gray-400 hover:text-white">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-wechat-fill"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-weibo-fill"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-douyin-fill"></i>
+</div>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">服务模块</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white">居家生活服务</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">安全健康服务</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">精神慰藉服务</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">适老化改造</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">康复训练</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">政策支持</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white">苏适养老政策</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">智慧养老补贴</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">养老服务资质</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">数据共享联盟</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">企业税收优惠</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">关于我们</h4>
+<ul class="space-y-2">
+<li><a href="#" class="text-gray-400 hover:text-white">公司简介</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">团队介绍</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">研究成果</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">合作伙伴</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white">加入我们</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-8">
+<div class="flex flex-wrap justify-between items-center">
+<div class="text-gray-400 text-sm">
+© 2025 云中颐享. 保留所有权利. <a href="#" class="hover:text-white">隐私政策</a> | <a href="#" class="hover:text-white">服务条款</a>
+</div>
+<div class="flex space-x-4 mt-4 md:mt-0">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-alipay-fill text-2xl text-blue-400"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-wechat-pay-fill text-2xl text-green-400"></i>
+</div>
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-bank-card-fill text-2xl text-gray-400"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// 服务类型分布图表
+const serviceChart = echarts.init(document.getElementById('serviceChart'));
+const serviceOption = {
+animation: false,
+tooltip: {
+trigger: 'item',
+backgroundColor: 'rgba(255, 255, 255, 0.8)',
+textStyle: {
+color: '#1f2937'
+}
+},
+legend: {
+top: 'bottom',
+textStyle: {
+color: '#1f2937'
+}
+},
+series: [
+{
+name: '服务类型分布',
+type: 'pie',
+radius: ['40%', '70%'],
+avoidLabelOverlap: false,
+itemStyle: {
+borderRadius: 8,
+borderColor: '#fff',
+borderWidth: 2
+},
+label: {
+show: false,
+position: 'center'
+},
+emphasis: {
+label: {
+show: true,
+fontSize: '16',
+fontWeight: 'bold',
+color: '#1f2937'
+}
+},
+labelLine: {
+show: false
+},
+data: [
+{ value: 42, name: '居家生活服务', itemStyle: { color: 'rgba(87, 181, 231, 1)' } },
+{ value: 38, name: '安全健康服务', itemStyle: { color: 'rgba(141, 211, 199, 1)' } },
+{ value: 20, name: '精神慰藉服务', itemStyle: { color: 'rgba(251, 191, 114, 1)' } }
+]
+}
+]
+};
+serviceChart.setOption(serviceOption);
+// 用户满意度趋势图表
+const satisfactionChart = echarts.init(document.getElementById('satisfactionChart'));
+const satisfactionOption = {
+animation: false,
+tooltip: {
+trigger: 'axis',
+backgroundColor: 'rgba(255, 255, 255, 0.8)',
+textStyle: {
+color: '#1f2937'
+}
+},
+grid: {
+left: '3%',
+right: '4%',
+bottom: '3%',
+top: '3%',
+containLabel: true
+},
+xAxis: {
+type: 'category',
+boundaryGap: false,
+data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+axisLine: {
+lineStyle: {
+color: '#e5e7eb'
+}
+},
+axisLabel: {
+color: '#1f2937'
+}
+},
+yAxis: {
+type: 'value',
+min: 80,
+max: 100,
+axisLine: {
+lineStyle: {
+color: '#e5e7eb'
+}
+},
+axisLabel: {
+color: '#1f2937',
+formatter: '{value}%'
+},
+splitLine: {
+lineStyle: {
+color: '#f3f4f6'
+}
+}
+},
+series: [
+{
+name: '用户满意度',
+type: 'line',
+smooth: true,
+lineStyle: {
+width: 3,
+color: 'rgba(87, 181, 231, 1)'
+},
+symbol: 'none',
+areaStyle: {
+color: {
+type: 'linear',
+x: 0,
+y: 0,
+x2: 0,
+y2: 1,
+colorStops: [{
+offset: 0, color: 'rgba(87, 181, 231, 0.2)'
+}, {
+offset: 1, color: 'rgba(87, 181, 231, 0.01)'
+}]
+}
+},
+data: [89.2, 90.5, 91.3, 92.1, 93.4, 94.2, 94.8, 95.3, 95.7, 96.1, 96.4, 96.7]
+}
+]
+};
+satisfactionChart.setOption(satisfactionOption);
+// 窗口大小变化时重新调整图表大小
+window.addEventListener('resize', function() {
+serviceChart.resize();
+satisfactionChart.resize();
+});
+});
+// 字体大小控制
+document.addEventListener('DOMContentLoaded', function() {
+const fontSizeButtons = document.querySelectorAll('.font-size-control button');
+const html = document.documentElement;
+fontSizeButtons.forEach(button => {
+button.addEventListener('click', function() {
+fontSizeButtons.forEach(btn => {
+btn.classList.remove('bg-primary', 'text-white');
+btn.classList.add('bg-gray-200', 'text-gray-800');
+});
+this.classList.remove('bg-gray-200', 'text-gray-800');
+this.classList.add('bg-primary', 'text-white');
+if (this.textContent === 'A-') {
+html.style.fontSize = '14px';
+} else if (this.textContent === 'A') {
+html.style.fontSize = '16px';
+} else {
+html.style.fontSize = '18px';
+}
+});
+});
+});
+// 滑块交互
+document.addEventListener('DOMContentLoaded', function() {
+const rangeSlider = document.querySelector('.range-slider');
+if (rangeSlider) {
+rangeSlider.addEventListener('input', function() {
+const value = this.value;
+const percent = ((value - this.min) / (this.max - this.min)) * 100;
+this.style.background = `linear-gradient(to right, #4F46E5 0%, #4F46E5 ${percent}%, #e5e7eb ${percent}%, #e5e7eb 100%)`;
+});
+// 初始化滑块背景
+const value = rangeSlider.value;
+const percent = ((value - rangeSlider.min) / (rangeSlider.max - rangeSlider.min)) * 100;
+rangeSlider.style.background = `linear-gradient(to right, #4F46E5 0%, #4F46E5 ${percent}%, #e5e7eb ${percent}%, #e5e7eb 100%)`;
+}
+});
+</script>
+</body>
+</html>
